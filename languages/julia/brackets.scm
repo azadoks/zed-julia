@@ -13,24 +13,23 @@
 
 ((function_definition
   "function" @open
-  "end" @close)
-  (#set! rainbow.exclude))
+  "end" @close))
 
 ((macro_definition
   "macro" @open
-  "end" @close)
-  (#set! rainbow.exclude))
+  "end" @close))
 
 ((struct_definition
   "struct" @open
-  "end" @close)
-  (#set! rainbow.exclude))
+  "end" @close))
 
 ; Pair `mutable` with `end` so that placing the cursor on `mutable` in
 ; `mutable struct ... end` highlights/jumps to the matching `end`. The
 ; `struct`/`end` pair above still wins when the cursor is past `struct`,
 ; because `innermost_enclosing_bracket_ranges` prefers the smaller pair.
 ; The same idea applies to `abstract type` / `primitive type` below.
+; `mutable`, `abstract` and `primitive` share their `end` with the `struct` /
+; `type` pairs, so they stay out of rainbow coloring to keep one color per `end`.
 ((struct_definition
   "mutable" @open
   "end" @close)
@@ -43,8 +42,7 @@
 
 ((abstract_definition
   "type" @open
-  "end" @close)
-  (#set! rainbow.exclude))
+  "end" @close))
 
 ((primitive_definition
   "primitive" @open
@@ -53,55 +51,44 @@
 
 ((primitive_definition
   "type" @open
-  "end" @close)
-  (#set! rainbow.exclude))
+  "end" @close))
 
 ((module_definition
   "module" @open
-  "end" @close)
-  (#set! rainbow.exclude))
+  "end" @close))
 
 ((module_definition
   "baremodule" @open
-  "end" @close)
-  (#set! rainbow.exclude))
+  "end" @close))
 
 ((compound_statement
   "begin" @open
-  "end" @close)
-  (#set! rainbow.exclude))
+  "end" @close))
 
 ((quote_statement
   "quote" @open
-  "end" @close)
-  (#set! rainbow.exclude))
+  "end" @close))
 
 ((let_statement
   "let" @open
-  "end" @close)
-  (#set! rainbow.exclude))
+  "end" @close))
 
 ((if_statement
   "if" @open
-  "end" @close)
-  (#set! rainbow.exclude))
+  "end" @close))
 
 ((try_statement
   "try" @open
-  "end" @close)
-  (#set! rainbow.exclude))
+  "end" @close))
 
 ((for_statement
   "for" @open
-  "end" @close)
-  (#set! rainbow.exclude))
+  "end" @close))
 
 ((while_statement
   "while" @open
-  "end" @close)
-  (#set! rainbow.exclude))
+  "end" @close))
 
 ((do_clause
   "do" @open
-  "end" @close)
-  (#set! rainbow.exclude))
+  "end" @close))

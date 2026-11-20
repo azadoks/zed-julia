@@ -480,12 +480,12 @@
   (macro_identifier "@" (identifier)) @function.macro
   (macro_argument_list
     .
-    [(string_literal) (prefixed_string_literal)] @comment.doc))
+    [(string_literal) (prefixed_string_literal)] @string.doc))
   (#eq? @function.macro "@doc"))
 
 ; (2) docstrings preceding documentable elements at the top of a source file:
 (source_file
-  (string_literal) @comment.doc
+  (string_literal) @string.doc
   .
   [
     (assignment)
@@ -505,7 +505,7 @@
 ; (3) docstrings preceding documentable elements at the top of a module:
 (module_definition
   (block
-    (string_literal) @comment.doc
+    (string_literal) @string.doc
     .
     [
       (assignment)
@@ -525,7 +525,7 @@
 ; (4) struct field docstrings:
 (struct_definition
   (block
-    (string_literal) @comment.doc
+    (string_literal) @string.doc
     .
     [(identifier) (typed_expression)]))
 

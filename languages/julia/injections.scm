@@ -1,4 +1,4 @@
-; Docstrings are not injected: highlights.scm captures them as @comment.doc,
+; Docstrings are not injected: highlights.scm captures them as @string.doc,
 ; so they render in a single color (like Python docstrings).
 
 ; HTML Language Injection
