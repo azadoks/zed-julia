@@ -13,14 +13,6 @@
 (field_expression
   (identifier) @variable.member .)
 
-; Symbols
-(quote_expression
-  ":" @string.special.symbol
-  [
-    (identifier)
-    (operator)
-  ] @string.special.symbol)
-
 ; Function calls
 (call_expression
   (identifier) @function.call)
@@ -89,22 +81,18 @@
   (_) @type
   (#any-of? @operator "<:" ">:"))
 
-; Built-in types
-; print.("\"", filter(name -> typeof(Base.eval(Core, name)) in [DataType, UnionAll], names(Core)), "\" ")
-((identifier) @type.builtin
-  (#any-of? @type.builtin
-    "AbstractArray" "AbstractChar" "AbstractFloat" "AbstractString" "Any" "ArgumentError" "Array"
-    "AssertionError" "AtomicMemory" "AtomicMemoryRef" "Bool" "BoundsError" "Char"
-    "ConcurrencyViolationError" "Cvoid" "DataType" "DenseArray" "DivideError" "DomainError"
-    "ErrorException" "Exception" "Expr" "FieldError" "Float16" "Float32" "Float64" "Function"
-    "GenericMemory" "GenericMemoryRef" "GlobalRef" "IO" "InexactError" "InitError" "Int" "Int128"
-    "Int16" "Int32" "Int64" "Int8" "Integer" "InterruptException" "LineNumberNode" "LoadError"
-    "Memory" "MemoryRef" "Method" "MethodError" "Module" "NTuple" "NamedTuple" "Nothing" "Number"
-    "OutOfMemoryError" "OverflowError" "Pair" "Ptr" "QuoteNode" "ReadOnlyMemoryError" "Real" "Ref"
-    "SegmentationFault" "Signed" "StackOverflowError" "String" "Symbol" "Task" "Tuple" "Type"
-    "TypeError" "TypeVar" "UInt" "UInt128" "UInt16" "UInt32" "UInt64" "UInt8" "UndefInitializer"
-    "UndefKeywordError" "UndefRefError" "UndefVarError" "Union" "UnionAll" "Unsigned" "VecElement"
-    "WeakRef"))
+; Zed - moved after type annotations so `:` in `Val{:x}` is not colored as a type
+; Symbols
+(quote_expression
+  ":" @string.special.symbol
+  [
+    (identifier)
+    (operator)
+  ] @string.special.symbol)
+
+; Zed - removed: Built-in types. They were captured as @type.builtin from a
+; list of Core types, so `Float64` and `Vector` got different colors, and Core
+; types got a type color even where they are used as values.
 
 ; Zed - added: const declarations
 (const_statement
@@ -117,7 +105,7 @@
   "@" @function.macro
   (identifier) @function.macro)
 
-; Zed - added: Assignment left-hand side should be variable, not type.builtin
+; Zed - added: Assignment left-hand side should be variable
 (assignment
   .
   (identifier) @variable)
